@@ -1,0 +1,114 @@
+
+/*********** FONTS & USAGE EXAMPLES *********/
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One&display=swap');  /* font-family: 'Julius Sans One', sans-serif; */
+@import url('https://fonts.googleapis.com/css?family=Fauna+One&display=swap');  /* font-family: 'Fauna One', serif; */
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap'); /* font-family: 'Roboto', sans-serif; */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
+/* font-family: 'Montserrat', sans-serif; */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&display=swap'); /*font-family: 'Source Sans Pro', sans-serif; */
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga", "kern";
+    text-rendering: optimizelegibility;
+    background-color: #f3f5fa;
+    overflow-x: hidden;
+
+}
+html{
+
+}
+
+/* ---------------------------------------------------
+   NAVBAR STYLE
+----------------------------------------------------- */
+
+.navbar-dark .navbar-nav .nav-link{
+    font-weight:500;
+    font-size:.9em;
+    /*color:#002752;*/
+}
+.navbar-brand {
+    color:white
+}
+
+/* ---------------------------------------------------
+   ADMIN SIDEBAR MENU STYLE
+----------------------------------------------------- */
+
+.menu-sidebar{
+    width:300px;
+    background-color:#343a40;
+    color:#ffffff;
+    padding:10px 20px;
+    height:100vh;
+    float: left;
+}
+
+
+
+/* ---------------------------------------------------
+    ADMIN CONTENT
+----------------------------------------------------- */
+.content{
+    padding:20px 40px;
+    float:left
+}
+
+
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 575.98px) {
+    .navbar-round-icon{
+        background-color: transparent;
+        box-shadow: none;
+    }
+}
+
+/*// Small devices (landscape phones, less than 768px)*/
+@media (max-width: 767.98px) {
+    .navbar-round-icon{
+        background-color: transparent;
+        box-shadow: none;
+    }
+}
+
+/*// Medium devices (tablets, less than 992px)*/
+@media (max-width: 991.98px) {
+
+}
+
+/*// Large devices (desktops, less than 1200px)*/
+@media (max-width: 1199.98px) {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
