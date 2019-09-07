@@ -20,13 +20,28 @@ class Main_object {
     }
 
     public static function displayValidationErrors($error){
-        $errors = "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-                    $error 
+        if(is_array($error)){
+            foreach ($error as $single_e){
+                $errors = "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+                    $single_e
                     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
                        <span aria-hidden=\"true\">&times;</span>
                     </button>
                </div>";
-        return $errors;
+                return $errors;
+            }
+        } else {
+            $errors = "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+                    $error
+                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                       <span aria-hidden=\"true\">&times;</span>
+                    </button>
+               </div>";
+            return $errors;
+        }
+
+
+
     }
 
     public static function findAll(){
@@ -149,9 +164,12 @@ class Main_object {
 
             $this->id = $database->theInsertId();
 
+            global $session;
+
             return true;
 
         } else {
+
 
             return false;
 

@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
     $property->transaction = $_POST['transaction'];
     $property->title = $_POST['title'];
     $property->rooms = $_POST['rooms'];
-    $property->category = $_POST['category'];
+    $property->category_id = $_POST['category'];
     $property->partitions = $_POST['partitions'];
     $property->floor = $_POST['floor'];
     $property->surface = $_POST['surface'];
@@ -33,17 +33,11 @@ if(isset($_POST['submit'])){
     $property->description = $_POST['description'];
     $property->contact_number = $_POST['contact_number'];
     try {
-        if(empty($property->errors) === true || empty($photo->errors) === true){
-            $property->finishCreatingProperty();
+            $property->finishCreatingCommercialSpace();
             $property->propertyExpiration($property->expiration);
             $photo->saveImages($_FILES['upload'], $_SESSION['user_id']['id'], $property->id );
             $photo->isFeatured($_FILES['featured'], $_SESSION['user_id']['id'], $property->id);
-        } else {
-            echo "$property->errors";
-            echo "$photo->errors";
-            echo "<br> This is the error else";
-        }
-
+            redirect("edit_property_type.php?id={$property->id}");
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
     }

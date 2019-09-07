@@ -115,6 +115,101 @@ echo __FILE__."/vendor/autoload.php";
     </div>
 
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <?php $commercial_space = [
+    'date_created',
+    'transaction',
+    'title',
+    'rooms',
+    'category_id',
+    'partitions',
+    'floor',
+    'surface',
+    'price',
+    'commission',
+    'construction_year',
+    'description',
+    'address',
+    'contact_number'
+    ];
+
+    //public function finishCreatingCommercialSpace(){
+    global $database;
+    $array_comm = array();
+
+    foreach ($commercial_space as $value){
+        $array_comm[$value] = $value;
+    }
+    $final_arr = array();
+
+    foreach ($array_comm as $key => $value){
+        $final_arr[] = "{$key} = {$value}";
+    }
+
+
+
+    $sql = "UPDATE mysql SET '";
+    $sql .= implode("','", $final_arr);
+    $sql .= "' WHERE id = id";
+
+    echo $sql;
+//
+//    echo implode(",",array_keys($array_comm));
+//    echo implode(",", array_values($array_comm));
+//
+//    echo $sql;
+//
+//    var_export($array_comm);
+
+
+
+  //  }
+
+
+
+
+
+
+
+    ?>
+<br>
+<br>
+<br>
+<br>
+
+
+    <a href="#" data-toggle="tooltip" title="Some tooltip text!" data-placement="left">Hover over me</a>
+
+    <!-- Generated markup by the plugin -->
+    <div class="tooltip bs-tooltip-top" role="tooltip">
+        <div class="arrow"></div>
+        <div class="tooltip-inner">
+            Some tooltip text!
+        </div>
+    </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+    <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        Popover on top
+    </button>
+
+
+
+    <button type="button" data-trigger="hover" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+
+    <div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>
+
 
 
 

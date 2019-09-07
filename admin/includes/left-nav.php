@@ -1,25 +1,28 @@
-<div class="menu-sidebar">
-    <a class="navbar-brand" href="../index.php">HOME PAGE</a>
-    <ul class="nav flex-column ">
-        <li class="nav-item">
-            <a class="nav-link active" href="users.php">USERS</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="categories.php">Categories</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="add_property.php">Add Property</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gallery</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="add_photo.php">Add Photos</a>
-                <a class="dropdown-item" href="photos.php">Gallery</a>
 
-            </div>
-        </li>
-    </ul>
-</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarText">
+        <ul class="navbar-nav mx-5">
+            <?php
+            if($_SESSION['user_id']['role'] == "admin"){
+                echo "<li class=\"nav-item\">
+                <a class=\"nav-link\" href=\"#\">only admins sees this</a>
+            </li>";
+            }
+            ?>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="far fa-bell"></i> Notifications</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="far fa-envelope"></i> Messages</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="logout.php"><i class="fas fa-user-slash"></i> Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+

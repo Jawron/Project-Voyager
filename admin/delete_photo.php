@@ -19,7 +19,7 @@ $photos = Photo::findbyId($_GET['id']);
 
 if($photos) {
     $photos->id = $_GET['id'];
-    $session->message("Photo has been deleted");
+    $session->message("Property has been deleted");
     $photos->deletePhoto();
     redirect('photos.php');
 

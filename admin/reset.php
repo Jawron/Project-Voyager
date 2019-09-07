@@ -1,40 +1,58 @@
 <?php include ('includes/header.php');?>
+<?php include("../includes/main-nav.php"); ?>
+
+
+
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3 col-md-6 offset-md-3 ">
+            <div class="alert-placeholder">
+                <?php
+                $reset_pass = new Users;
+                $reset_pass->passwordReset();
+                ?>
+
+            </div>
+        </div>
+    </div>
+    <style>
+        .code-btn-validate{
+            width: 100%;
+
+        }
+    </style>
     <div class="container">
-        <br>
-        <div class="row jumbotron border-b-1-0 col-10 offset-1">
-            <?php
-            $reset_pass = new Users;
-            $reset_pass->passwordReset();
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-xs-12 offset-xs-0">
+                <div class="header-container">
+                    <h1 style="padding-top:50px;text-align: center">Recover Password</h1>
 
-
-            ?>
-            <div class="container">
-
-                <h2 class="lead text-center py-3">RESET PASSWORD</h2>
-                <hr class="my-4">
-                <div class="col-8 offset-2">
-                    <form id="register-form" method="post" role="form" >
-
-                        <div class="form-group">
-                            <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" name="confirm_password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-sm-6 offset-sm-3">
-                                    <input type="submit" name="reset-password-submit" id="reset-password-submit" tabindex="4" class="form-control btn btn-outline-info" value="Reset Password">
-                                </div>
-                            </div>
-                        </div>
-                        <input type="hidden" class="hide" name="token" id="token" value="<?php echo $reset_pass->tokenGenerator();?>">
-                    </form>
                 </div>
+                <form id="register-form"  method="post" role="form" autocomplete="off">
+                    <div class="form-group">
+                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="confirm_password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="reset-password-submit" id="reset-password-submit" tabindex="4" class="code-btn-validate form-control btn btn-outline-info" value="Reset Password">
+                    </div>
+                    <input type="hidden" class="hide" name="token" id="token" value="<?php echo $reset_pass->tokenGenerator();?>">                </form>
+                <ul class="add-property-info">
+                    <li><i class="fas fa-info-circle"></i> Choose a new password.</li>
+                    <li><i class="fas fa-info-circle"></i> By clicking the above button you agree with our <a href="">Terms & Conditions</a>.</li>
+                    <li><i class="fas fa-info-circle"></i> Category description is optional but recommended to fill, it may be used to
+                        describe two appropriate category names.</li>
+                </ul>
             </div>
         </div>
     </div>
 
 
 
-<?php include ('includes/footer.php');?><?php
+
+
+
+
+
+

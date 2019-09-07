@@ -14,10 +14,41 @@ if(!$session->isSignedIn()){
 
 ?>
 
-<div class="container">
+    <div class="container"><!--  container alert  -->
+        <?php
+        if(!empty($session_message)){
+            echo "
+            <div class=\"col-md-12\">
+                <div class=\"alert alert-custom-session alert-dismissible fade show\" role=\"alert\">
+                    <div class=\"row\">
+                        <div class=\"col-sm-1\">
+                            <div class=\"session-icon\">
+                                <i class=\"fas fa-exclamation-circle fa-2x\"></i>
+                            </div>
+                        </div>
+                        <div class=\"col-sm-11\">
+                            <div class=\"alert-session-text\">
+                                <h1 >Hey look! An Update!</h1>
+                                $session_message
+                            </div>
+                        </div>
+                    </div>
+        
+        
+                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                        <span aria-hidden=\"true\">&times;</span>
+                    </button>
+                </div>
+            </div>
+            ";
+        }
+        ?>
+    </div>
 
-    <div class="col-md-12">
-        <?php echo "<h1>$session_message </h1>"; ?>
+
+
+
+
 
         <?php
 
@@ -25,42 +56,75 @@ if(!$session->isSignedIn()){
         $user_user = $user->findAll();
         ?>
 
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Role</th>
-                <th>UserName</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-            </tr>
-            </thead>
+    <style>
 
-            <tbody>
-            <?php foreach ($user_user as $user){ ?>
-                <tr>
-                    <td><?php echo $user->id; ?></td>
-                    <td><?php echo $user->role; ?></td>
-                    <td>
-                        <?php echo $user->username; ?>
-                        <div class="action_link">
-                            <a href="delete_user.php?id=<?php echo $user->id;?>">Delete</a>
-                            <a href="edit_user.php?id=<?php echo $user->id;?>">Edit</a>
-                        </div>
-                    </td>
-                    <td><?php echo $user->first_name; ?></td>
-                    <td><?php echo $user->last_name; ?></td>
-                    <td><?php echo $user->user_image; ?></td>
+    </style>
 
-                </tr>
-            <?php } ?>
-            </tbody>
-
-        </table>
-
+    <div class="container">
+        <div class="col">
+            <div class="header-container">
+                <h1>Users</h1>
+                <p>Showing all registered users, active and non-active ones</p>
+            </div>
+        </div>
     </div>
+    <div class="container">
+            <div class="row">
+                <?php foreach ($user_user as $user){ ?>
+                <div class="col-md-4" >
+                    <div class="outer-users-container">
+                        <div class="option-users-container">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="edit_user.php?id=<?php echo $user->id;?>">Edit</a>
+                                    <a class="dropdown-item" href="delete_user.php?id=<?php echo $user->id;?>">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="top-inner-container">
+                            <div class="inner-user-image">
+                                <img src="<?php echo $user->imagePlaceholder();?>" class="card-img-top">
+                            </div>
+                            <div class="inner-top-text">
+                                <h4><?php echo $user->username; ?></h4>
+                                <p class="user-email"><i class="fas fa-globe"></i> <a href="#"><?php echo $user->email; ?></a></p>
+                                <p class="user-created"><i class="far fa-calendar-alt"></i> <?php echo $user->date_created; ?></p>
+                                <?php
+                                    if($user->active == "1"){
+                                        echo "<p class=\"user-status-active\"><i class=\"fas fa-check-circle\"></i> Verified</p>";
+                                    } else {
+                                        echo "<p class=\"user-status-notactive\"><i class=\"fas fa-user-times\"></i> Not Active</p>";
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="middle-inner-container">
+                            <div class="inner-middle-info">
+                                <div class="inner-middle-name">
+                                    <p><strong><i class="fas fa-signature"></i></strong> <?php echo $user->first_name; ?></p>
+                                    <p><strong><i class="fas fa-signature"></i></strong> <?php echo $user->last_name; ?></p>
+                                </div>
+                                <div class="inner-middle-contact">
+                                    <p><strong><i class="fas fa-address-book"></i></strong> <?php echo $user->phone_number; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom-inner-name">
+                            <div class="inner-user-bio">
+                                <h5>Bio:</h5>
+                                <p><span class="quotes-users">"</span><?php echo $user->bio; ?><span class="quotes-users">"</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
 
-</div>
+            </div>
+    </div>
 
 
 

@@ -36,20 +36,15 @@ if(isset($_POST['submit'])){
     $property->description = $_POST['description'];
     $property->contact_number = $_POST['contact_number'];
     try {
-        if(empty($property->errors) === true || empty($photo->errors) === true){
-            $property->finishCreatingProperty();
+
+            $property->finishCreatingCommercialSpace();
             $property->propertyExpiration($property->expiration);
-            $photo->saveImages($_FILES['upload'], $_SESSION['user_id']['id'], $property->id);
-            $photo->isFeatured($_FILES['featured'], $_SESSION['user_id']['id'], $property->id);
 
-            //redirect("edit_property_type.php?id={$property->id}");
+                $photo->isFeatured($_FILES['featured'], $_SESSION['user_id']['id'], $property->id);
+                $photo->saveImages($_FILES['upload'], $_SESSION['user_id']['id'], $property->id);
 
+            redirect("edit_property_type.php?id={$property->id}");
 
-        } else {
-            echo "$property->errors";
-            echo "$photo->errors";
-            echo "<br> This is the error else";
-        }
 
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -64,6 +59,14 @@ if(isset($_POST['submit'])){
 <div class="container">
 
     <?php $existing_property->getPhotos($_GET['id']); ?>
+    <br>
+    <h1>FEATURED IMAGE</h1>
+    <br>
+    <?php $existing_property->getFeaturedImage($_GET['id']); ?>
+</div>
+<div class="alert-danger">
+    <p>Errors?</p>
+    <?php echo $photo->getError(); ?>
 </div>
 <div class="container">
     <?php echo $existing_property->address;?><br>
@@ -110,6 +113,7 @@ if(isset($_POST['submit'])){
             <label for="expiration">Keep Alive</label>
             <p>Time remaining:<?php echo $existing_property->convertUnixTimeToDate($existing_property->expiration)   ;?></p>
             <p>Time remaining:<?php echo ($existing_property->expiration - date('U'))/60/60/24;?></p>
+            <p>Time remaining:<?php echo $existing_property->getRemainingExpirationTime($existing_property->expiration); ?></p>
             <select name="expiration" class="form-control">
                 <option selected value="<?php echo ($existing_property->expiration - date('U'))/60/60/24;?>" selected><?php echo $existing_property->getRemainingExpirationTime($existing_property->expiration) ?></option>
                 <option value="240" >10 Days</option>
@@ -184,6 +188,10 @@ if(isset($_POST['submit'])){
         <div class="form-group">
             <label for="description">Description</label>
             <input type="text" name="description" class="form-control" value="<?php echo $existing_property->description;?>">
+        </div>
+        <div class="form-group">
+            <label for="address">Adress</label>
+            <input type="text" name="address" class="form-control" value="<?php echo $existing_property->address;?>">
         </div>
         <div class="form-group">
             <input type="submit" id='submit' value="CREATE COMMERCIAL SPACE" name="submit" class="btn btn-primary pull-right" >

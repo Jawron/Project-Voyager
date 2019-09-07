@@ -23,27 +23,16 @@ $property = Property::findById($_GET['id']);
 
 
 ?>
-    <div id="page-wrapper">
-        <div class="container-fluid">
+    <div class="container">
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Add a Category
-                        <small>Subheading</small>
-                    </h1>
-
-                            <?php $property->getType($property->type)?>
-                </div>
-
-                    <hr>
-
+        <div class="row">
+            <div class="col-lg-12">
+                <?php $property->getType($property->type)?>
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
+            <!-- /.row -->
     </div>
-    <!-- /#page-wrapper -->
+
 
 
 <?php include("includes/footer.php"); ?>

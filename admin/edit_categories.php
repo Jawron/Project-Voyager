@@ -29,47 +29,84 @@ if(isset($_POST['update'])){
 
 
 ?>
-<div id="page-wrapper">
-    <div class="container-fluid">
-        <!-- Page Heading -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">
-                    Add a Category
-                    <small>Subheading</small>
-                </h1>
-                <form action="" enctype="multipart/form-data" method="post">
-                    <div class="col-md-6 col-md-offset-3">
 
-                        <div class="form-group">
-                            <label for="username">Category Name</label>
-                            <input type="text" name="cat_name" class="form-control" value="<?php echo $category->cat_name;?>">
+<div class="container"><!--  container alert  -->
+    <?php
+    if(!empty($session_message)){
+        echo "
+        <div class=\"col-md-12\">
+            <div class=\"alert alert-custom-session alert-dismissible fade show\" role=\"alert\">
+                <div class=\"row\">
+                    <div class=\"col-sm-1\">
+                        <div class=\"session-icon\">
+                            <i class=\"fas fa-exclamation-circle fa-2x\"></i>
                         </div>
-                        <div class="form-group">
-                            <label for="first_name">Category Description</label>
-                            <input type="text" name="cat_desc" class="form-control" value="<?php echo $category->cat_desc;?>">
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="Create a Motherfucker" name="update" class="btn btn-primary pull-right" >
-                        </div>
-
                     </div>
-
-                </form>
-
-
-                <hr>
-
-
-
-
+                    <div class=\"col-sm-11\">
+                        <div class=\"alert-session-text\">
+                            <h1 >Hey look! An Update!</h1>
+                            $session_message
+                        </div>
+                    </div>
+                </div>
+    
+    
+                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                    <span aria-hidden=\"true\">&times;</span>
+                </button>
             </div>
         </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
+        ";
+    }
+    ?>
+
 </div>
-<!-- /#page-wrapper -->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <div class="header-container">
+                <h1 style="padding-top:50px;text-align: center">Edit category</h1>
+
+            </div>
+            <form action="" enctype="multipart/form-data" method="post">
+                <div class="">
+
+                    <div class="form-group">
+                        <label for="username">Category Name</label>
+                        <input type="text" name="cat_name" class="form-control" value="<?php echo $category->cat_name;?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="first_name">Category Description (Optional)</label>
+                        <input type="text" name="cat_desc" class="form-control" value="<?php echo $category->cat_desc;?>">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create a new category" name="update" class="button-save-submit" >
+                    </div>
+
+                </div>
+
+            </form>
+            <ul class="add-property-info">
+                <li><i class="fas fa-info-circle"></i> By clicking the above button you agree with our <a href="">Terms & Conditions</a>.</li>
+                <li><i class="fas fa-info-circle"></i> Category description is optional but recommended to fill, it may be used to
+                    describe two appropriate category names.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

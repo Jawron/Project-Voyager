@@ -36,9 +36,27 @@ class Users extends  Main_object
     public $tmp_path;
     public $type;
     public $size;
-    public $errors = [];
+    public $errors = array();
     public $upload_directory = "images";
     public $image_placeholder = "https://via.placeholder.com/100&text=image";
+
+
+    private function setError($message) {
+        if (empty($this->errors)) {
+            $this->errors = $message;
+        }
+    }
+
+    public function getError(){
+        if(is_array($this->errors)){
+            foreach ($this->errors as $error) {
+                return $error;
+            }
+        } else {
+            return $this->errors;
+        }
+    }
+
 
     public function interests(){
         if($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -283,8 +301,8 @@ class Users extends  Main_object
             //Creates the headers,subject,message for the activate user email
             $subject = "Activate account";
             $msg = "Please click the link below to activate your account<br>
-            <a href='".__FILE__."/login/activate.php?email=$email&code=$validation_code'>
-            http://".__FILE__."/login/activate.php?email=$email&code=$validation_code
+            <a href='".$_SERVER['HTTP_HOST']."/login/activate.php?email=$email&code=$validation_code'>
+            http://".$_SERVER['HTTP_HOST']."/login/activate.php?email=$email&code=$validation_code
             </a>";
             $headers = "From: noreply@localhost.ro";
 
@@ -390,16 +408,17 @@ class Users extends  Main_object
 
 
                     $session->message(
-                        "<p class='bg-success'>Your account has been <strong>Activated</strong>. Please login.</p>"
+                        "Your account has been <strong>Activated</strong>. Please login."
                     );
 
                     redirect("login.php");
                 } else {
                     $session->message(
-                        "<p class='bg-success'>Your account <strong>could NOT</strong> be activated.</p>"
+                        "Your account <strong>could NOT</strong> be activated.Check your email 
+                                address or try again to register."
                     );
 
-                    redirect("login.php");
+                    redirect("register.php");
                 }
 
             }
@@ -429,7 +448,7 @@ class Users extends  Main_object
                     $msg = "Here is your password reset code:<br>
                     <strong>$validation_code</strong><br>
                     <strong>http://localhost:8181/Project-Voyager/admin/code.php?email=$email&code=$validation_code</strong>
-                    Click here to reset password <a href='http://localhost:8181/login/code.php?email=$email&code=$validation_code'><strong>GO TO RECOVER PASSWORD</strong></a>
+                    Click here to reset password <a href=''><strong>GO TO RECOVER PASSWORD</strong></a>
                 ";
                     $headers = "From my appLogin";
 
@@ -442,7 +461,7 @@ class Users extends  Main_object
               </div>";
                     }
 
-                    $session->message("<p class='bg-success'>Please check your email for a password  code</p>");
+                    $session->message("Please check your email for a password  code");
                     redirect("../index.php");
 
                 } else {
@@ -469,10 +488,10 @@ class Users extends  Main_object
             global $database;
 
             if(!isset($_GET['email']) && !isset($_GET['code'])){
-                redirect("index.php");
+                redirect("../index.php");
 
             } else if (!isset($_GET['email']) || !isset($_GET['code'])){
-                redirect("index.php");
+                redirect("../index.php");
             } else {
                 if(isset($_POST['code'])){
                     $email = Main_object::clean($_GET['email']);
@@ -496,7 +515,7 @@ class Users extends  Main_object
             }
 
         } else {
-            $session->message("<p class='bg-success'>Sorry , your validation cookie is expired</p>");
+            $session->message("Sorry , your validation cookie is expired");
             redirect('recover.php');
         }
 
@@ -521,7 +540,7 @@ class Users extends  Main_object
                             $sql = "UPDATE users SET password = '".$database->escapeString($encripted_pass)."', validation_code = 0 WHERE email = '".$database->escapeString($email)."'";
                             $result = $database->query($sql);
 
-                            $session->message("<p class='bg-success'>Your password has been updated, please login</p");
+                            $session->message("Your password has been updated, please login");
 
                             redirect("login.php");
 

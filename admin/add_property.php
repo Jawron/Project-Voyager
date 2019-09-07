@@ -26,53 +26,83 @@ if(isset($_POST['submit'])){
 }
 
 ?>
+<div class="container"><!--  container alert  -->
+    <?php
+    if(!empty($session_message)){
+        echo "
+        <div class=\"col-md-12\">
+            <div class=\"alert alert-custom-session alert-dismissible fade show\" role=\"alert\">
+                <div class=\"row\">
+                    <div class=\"col-sm-1\">
+                        <div class=\"session-icon\">
+                            <i class=\"fas fa-exclamation-circle fa-2x\"></i>
+                        </div>
+                    </div>
+                    <div class=\"col-sm-11\">
+                        <div class=\"alert-session-text\">
+                            <h1 >Hey look! An Update!</h1>
+                            $session_message
+                        </div>
+                    </div>
+                </div>
+    
+    
+                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                    <span aria-hidden=\"true\">&times;</span>
+                </button>
+            </div>
+        </div>
+        ";
+    }
+    ?>
+    <?php
+    if(!empty($photo->getError())){
+        echo Main_object::displayValidationErrors($property->getError());
+    }
+    ?>
+</div><!--  end container alert  -->
 
 
-<div id="page-wrapper">
-    <div class="container-fluid">
-        <!-- Page Heading -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">
-                    Add a property
-                    <small>Subheading</small>
-                </h1>
-                <?php echo $session_message;?>
+
+<div class="container">
+    <div class="row">
+        <div class="add-property-logo">
+            <i class="fas fa-plus-circle add-property-logo-styled" style=""></i>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-6 offset-3">
                 <form action="" enctype="multipart/form-data" method="post">
                     <div class="form-group">
-                        <label for="title">Title</label>
+                        <label for="title">Choose a Title</label>
                         <input type="text" name="title" class="form-control" >
                     </div>
                     <div class="form-group">
-                        <label for="type">Rooms</label>
-                        <select name="type" class="form-control">
+                        <label for="type">Select the type of the property</label>
+                        <select id ="select" name="type" class="form-control">
                             <option value="apartament" selected>Apartament</option>
                             <option value="apartament">Apartament</option>
-                            <option value="casa">Casa</option>
-                            <option value="teren">Teren</option>
-                            <option value="spatiu comercial">Spatiu Comercial</option>
+                            <option value="casa">House</option>
+                            <option value="teren">Field</option>
+                            <option value="spatiu comercial">Commercial Space</option>
 
                         </select>
                     </div>
+
                     <div class="form-group">
-                        <input type="submit" value="Create a Motherfucker" name="submit" class="btn btn-primary pull-right" >
+                        <input type="submit" value="Create a new Listing" name="submit" class="button-save-submit" >
                     </div>
                 </form>
-
-
-                <hr>
-
-
-
-
+                <ul class="add-property-info">
+                    <li><i class="fas fa-info-circle"></i> By clicking the above button you agree with our <a href="">Terms & Conditions</a>.</li>
+                    <li><i class="fas fa-info-circle"></i> This will take you to a custom page were you will be able to finish the details for your listing</li>
+                </ul>
             </div>
         </div>
-        <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
 </div>
-<!-- /#page-wrapper -->
-<h1>test</h1>
+
+</div>
+
 
 
 
