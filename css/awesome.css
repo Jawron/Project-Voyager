@@ -11,6 +11,7 @@
 @import url('https://fonts.googleapis.com/css?family=Asap:400,400i,500,500i,600,600i,700,700i&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Comfortaa:300,400,500,600,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&display=swap');
 body{
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
@@ -893,11 +894,234 @@ label{
     }
 }
 
+/*---------------------------------
+    CSS FOR ADMIN SETTINGS
+-----------------------------------*/
+
+.settings-slider{
+    background-color: #fff;
+    border:1px solid rgba(189,189,189 ,0.5);
+    border-radius: 7px;
+    padding:25px 15px 35px 30px;
+    box-shadow: rgba(189,189,189 ,0.5) 0px 1px 6px;
+    margin: 7px 0;
+}
+.settings-slider p{
+    font-weight: 800;
+}
+.settings-slider span{
+    font-weight: 400;
+}
+.change-slider-btn{
+    padding: 9px 14px;
+    background-color: rgba(0,99,177 ,1);
+    color: #fff;
+    text-decoration: none;
+    border:2px solid rgba(0,99,177 ,1);
+    transition: 500ms;
+}
+.change-slider-btn:hover{
+    text-decoration: none;
+    color: rgba(0,99,177 ,1);
+    border: 2px solid rgba(0,99,177 ,1);
+    background-color: #fff;
+}
+.create-slider-btn{
+    padding: 9px 14px;
+    background-color: rgba(67,160,71 ,1);
+    color: #fff;
+    text-decoration: none;
+    border:2px solid rgba(67,160,71 ,1);
+    transition: 500ms;
+}
+.create-slider-btn:hover{
+    text-decoration: none;
+    color: rgba(67,160,71 ,1);
+    border: 2px solid rgba(67,160,71 ,1);
+    background-color: #fff;
+}
+.settings-footer{
+    background-color: #fff;
+    border:1px solid rgba(189,189,189 ,0.5);
+    border-radius: 7px;
+    padding:15px 15px 15px 30px;
+    box-shadow: rgba(189,189,189 ,0.5) 0px 1px 6px;
+    margin: 7px 0;
+
+}
+.footer_type_btn{
+    padding: 11px 15px;
+    background-color: rgba(0,99,177 ,1);
+    color: #fff;
+    text-decoration: none;
+    border:2px solid rgba(0,99,177 ,1);
+    transition: 500ms;
+    margin-left: -15px;
+    border-radius: 0px;
+}
+.footer_type_btn:hover{
+    color: rgba(158,158,158 ,1);
+}
+.footer_column_btn{
+    padding: 11px 15px;
+    background-color: rgba(0,99,177 ,1);
+    color: #fff;
+    text-decoration: none;
+    border:2px solid rgba(0,99,177 ,1);
+    transition: 500ms;
+    border-radius: 0px;
+}
+.footer_column_btn:hover{
+    color: rgba(158,158,158 ,1);
+}
+
+
+.slider-text-info{
+    border: 9px solid rgba(45, 125, 154, 0.8);
+    position: absolute;
+    top: 230px;
+    z-index:100;
+    box-shadow: #00B294 5px 4px 0px ;
+    padding: 30px;
+    width:500px;
+    min-height: 230px;
+    background-color: rgba(52,73,94 ,0.3);
+}
+.slider-text-info .call-to-action {
+    font-weight:900;
+    color: rgba(231,76,60 ,1);
+    position: absolute;
+    bottom: 1px;
+}
+.slider-text-info .call-to-action a {
+    color: rgba(231,76,60 ,1);
+}
+.slider-text-info .title-slider{
+    font-weight:900;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 2.1em;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    text-shadow: rgba(45, 52, 54,0.3) 2px 2px 0px;
+    height: 50px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: rgba(231,76,60 ,0.7);
+}
+
+.slider-text-info .desc {
+    font-style: italic;
+    font-size: .8em;
+    color: white;
+    max-height: 75px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#slideshow {
+    overflow: hidden;
+    height: 510px;
+    width: 100%;
+}
+
+.slide-wrapper {
+    width: 7680px;
+    -webkit-animation: slide 18s ease infinite;
+    position: relative;
+}
+
+.slide {
+    float: left;
+    height: 510px;
+    width: 1920px;
+}
+.slide img {
+
+    background-size: contain;
+}
+
+.slide:nth-child(1) {
+    background: #D93B65;
+}
+
+.slide:nth-child(2) {
+    background: #037E8C;
+}
+
+.slide:nth-child(3) {
+    background: #36BF66;
+}
+
+.slide:nth-child(4) {
+    background: #D9D055;
+}
+
+.slide-number {
+    color: #000;
+    text-align: center;
+    font-size: 10em;
+}
+
+@-webkit-keyframes slide {
+    20% {margin-left: 0px;}
+    30% {margin-left: -1920px;}
+    50% {margin-left: -1920px;}
+    60% {margin-left: -3840px;}
+    70% {margin-left: -3840px;}
+    80% {margin-left: -5760px;}
+    90% {margin-left: -5760px;}
+}
 
 
 
-
-
+.upload-field-css{
+    display: none;
+}
+.label-css{
+    position: relative;
+    width:100%;
+    height: 50px;
+    border: 1px solid rgba(45, 125, 154, 1);
+}
+.file-upload-text-1,.file-upload-text-2,.file-upload-text-3{
+    position:absolute;
+    padding: 14px;
+    font-size: 1rem;
+    min-width:70% ;
+    height: 50px;
+    font-family: 'Comfortaa', cursive;
+    overflow: hidden;
+    color: white;
+    background-color: rgba(45, 125, 154, .5);
+}
+.button-file-upload-1,.button-file-upload-2,.button-file-upload-3{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 50px;
+    width: 30%;
+    text-align: center;
+    padding: 14px;
+    font-weight: 900;
+    font-size: 1.1em;
+    text-shadow: rgba(127,140,141 ,0.5) 1px 1px 1px;
+    font-family: 'Comfortaa', cursive;
+    background-color: #2D7D9A;
+    border: 1px transparent;
+    color: white;
+    overflow: hidden;
+}
+.pills-css-custom{
+    margin-right: -15px;
+    margin-left: -15px;
+    border-radius: 0px;
+    background-color: rgba(45, 125, 154, 1);
+}
+.nav-pills .nav-link{
+    border-radius: 0;
+    background-color: rgba(45, 125, 154,0.8);
+    color: white;
+}
 
 
 

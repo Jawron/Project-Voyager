@@ -15,7 +15,7 @@ require_once("functions.php");
 require_once("Session.php");
 require_once("Category.php");
 //require_once("../Class/Mail_info.php");
-require_once("slider.php");
+require_once("Slider.php");
 require_once("Photo.php");
 require_once("FooterClass.php");
 

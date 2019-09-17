@@ -55,11 +55,6 @@ if(isset($_POST['submit'])){
         ";
     }
     ?>
-    <?php
-    if(!empty($photo->getError())){
-        echo Main_object::displayValidationErrors($property->getError());
-    }
-    ?>
 </div><!--  end container alert  -->
 
 
@@ -70,7 +65,7 @@ if(isset($_POST['submit'])){
             <i class="fas fa-plus-circle add-property-logo-styled" style=""></i>
         </div>
         <div class="col-md-12">
-            <div class="col-md-6 offset-3">
+            <div class="col-md-6 offset-3 offset-xs-0">
                 <form action="" enctype="multipart/form-data" method="post">
                     <div class="form-group">
                         <label for="title">Choose a Title</label>
@@ -101,7 +96,7 @@ if(isset($_POST['submit'])){
     </div>
 </div>
 
-</div>
+
 
 
 

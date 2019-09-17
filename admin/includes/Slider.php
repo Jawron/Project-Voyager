@@ -3,7 +3,18 @@
 
 class Slider extends Main_object {
 
-    public static $db_table = "slider";
+    protected static $db_table = "slider";
+//    protected static $db_table_fields = [
+//        'photo',
+//        'type',
+//        'size',
+//        'alt_text',
+//        'user_id',
+//        'slide_id',
+//        'title',
+//        'description',
+//        'call_to_action'
+//    ];
     public $id;
     public $photo;
     public $type;
@@ -99,20 +110,26 @@ class Slider extends Main_object {
 
     public function getPhotos($id){
         global $database;
-        $sql = "SELECT * FROM slides WHERE slider_id = ".self::clean($id);
+        $sql = "SELECT photo,title,description,call_to_action FROM slides WHERE slider_id = ".self::clean($id);
         $row = $database->query($sql);
-
         while($result = mysqli_fetch_assoc($row)){
+//            echo $result['id'];
+//            echo $result['photo'];
+//            echo "<br>";
+
             echo "
-        <div class=\"mySlides\">
-            <div class=\"numbertext\">1 / 3</div>
-                <img src='images/{$result['photo']}' style=\"width:100%\">
-            <div class=\"text\">
-            <p>{$result['title']}</p>
-            <p>{$result['description']}</p>
-            <p>{$result['call_to_action']}</p>
-            </div>
-        </div>
+            
+                <div class='slide'>
+                    <img src='images/{$result['photo']}'>
+                    <div class='container'>
+                        <div class='slider-text-info'>
+                            <p class='title-slider'>{$result['title']}</p>
+                            <p class='desc'>{$result['description']}</p>
+                            <p class='call-to-action'><a href='demo.php'>{$result['call_to_action']} <i class='fas fa-arrow-right'></i></a></p>
+                        </div>
+                    </div>
+                </div>
+           
     ";
 
         }
@@ -213,7 +230,7 @@ class Slider extends Main_object {
         $database->query($sql);
     }
 
-    public static function findByID($id){
+    public static function findByIDSlide($id){
         global $database;
         $the_result_array = static::findByQuery("SELECT * FROM slides WHERE id = $id LIMIT 1");
 
@@ -228,8 +245,23 @@ class Slider extends Main_object {
         $database->query($sql);
     }
 
+    public function setMainSlider($slider){
+        global $database;
+        $sql = "UPDATE slider SET in_use = 0 WHERE in_use = 1";
+        $database->query($sql);
 
+        $sql = "UPDATE slider SET in_use = 1 WHERE title = '".self::clean("$slider")."'";
+        $database->query($sql);
+    }
 
+    public function returnActiveSlider(){
+        global $database;
+        $sql = "SELECT title FROM slider WHERE in_use = 1";
+        $result = $database->query($sql);
+         while ($row = mysqli_fetch_assoc($result)){
+             echo "{$row['title']}";
+         }
+    }
 
 
 

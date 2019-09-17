@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
     $slider->editImages($_FILES['photos'],$id,$slider->slide_id);
 }
 
-$existing_slide = Slider::findByID($_GET['id']);
+$existing_slide = Slider::findByIDSlide($_GET['id']);
 ?>
 
 
