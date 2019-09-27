@@ -101,25 +101,25 @@ class Property extends Main_object {
     public function finishCreatingApartment(){
         global $database;
         $sql = "UPDATE properties SET
-                      date_created = '".self::clean($this->date_created)."',
-                      transaction = '".self::clean($this->transaction)."',
-                      title = '".self::clean($this->title)."',
-                      rooms= '".self::clean($this->rooms)."',
-                      category_id = '".self::clean($this->category_id)."',
-                      partitions = '".self::clean($this->partitions)."',
-                      floor = '".self::clean($this->floor)."',
-                      surface = '".self::clean($this->surface)."',
-                      price = '".self::clean($this->price)."',
-                      commission = '".self::clean($this->commission)."',
-                      construction_year = '".self::clean($this->construction_year)."',
-                      description = '".self::clean($this->description)."',
-                      address = '".self::clean($this->address)."',
-                      total_floors = '".self::clean($this->total_floors)."',
-                      orientation = '".self::clean($this->orientation)."',
-                      bathrooms = '".self::clean($this->bathrooms)."',
-                      comfort = '".self::clean($this->comfort)."',
-                      contact_number = '".self::clean($this->contact_number)."'
-                       WHERE id = '".self::clean($this->id)."'
+                      date_created = '".$database->escapeString($this->date_created)."',
+                      transaction = '".$database->escapeString($this->transaction)."',
+                      title = '".$database->escapeString($this->title)."',
+                      rooms= '".$database->escapeString($this->rooms)."',
+                      category_id = '".$database->escapeString($this->category_id)."',
+                      partitions = '".$database->escapeString($this->partitions)."',
+                      floor = '".$database->escapeString($this->floor)."',
+                      surface = '".$database->escapeString($this->surface)."',
+                      price = '".$database->escapeString($this->price)."',
+                      commission = '".$database->escapeString($this->commission)."',
+                      construction_year = '".$database->escapeString($this->construction_year)."',
+                      description = '".$database->escapeString($this->description)."',
+                      address = '".$database->escapeString($this->address)."',
+                      total_floors = '".$database->escapeString($this->total_floors)."',
+                      orientation = '".$database->escapeString($this->orientation)."',
+                      bathrooms = '".$database->escapeString($this->bathrooms)."',
+                      comfort = '".$database->escapeString($this->comfort)."',
+                      contact_number = '".$database->escapeString($this->contact_number)."'
+                       WHERE id = '".$database->escapeString($this->id)."'
                     ";
         $database->query($sql);
 
@@ -128,21 +128,21 @@ class Property extends Main_object {
     public function finishCreatingCommercialSpace(){
         global $database;
         $sql = "UPDATE properties SET
-                      date_created = '".self::clean($this->date_created)."',
-                      transaction = '".self::clean($this->transaction)."',
-                      title = '".self::clean($this->title)."',
-                      rooms= '".self::clean($this->rooms)."',
-                      category_id = '".self::clean($this->category_id)."',
-                      partitions = '".self::clean($this->partitions)."',
-                      floor = '".self::clean($this->floor)."',
-                      surface = '".self::clean($this->surface)."',
-                      price = '".self::clean($this->price)."',
-                      commission = '".self::clean($this->commission)."',
-                      construction_year = '".self::clean($this->construction_year)."',
-                      description = '".self::clean($this->description)."',
-                      address = '".self::clean($this->address)."',
-                      contact_number = '".self::clean($this->contact_number)."'
-                       WHERE id = '".self::clean($this->id)."'
+                      date_created = '".$database->escapeString($this->date_created)."',
+                      transaction = '".$database->escapeString($this->transaction)."',
+                      title = '".$database->escapeString($this->title)."',
+                      rooms= '".$database->escapeString($this->rooms)."',
+                      category_id = '".$database->escapeString($this->category_id)."',
+                      partitions = '".$database->escapeString($this->partitions)."',
+                      floor = '".$database->escapeString($this->floor)."',
+                      surface = '".$database->escapeString($this->surface)."',
+                      price = '".$database->escapeString($this->price)."',
+                      commission = '".$database->escapeString($this->commission)."',
+                      construction_year = '".$database->escapeString($this->construction_year)."',
+                      description = '".$database->escapeString($this->description)."',
+                      address = '".$database->escapeString($this->address)."',
+                      contact_number = '".$database->escapeString($this->contact_number)."'
+                       WHERE id = '".$database->escapeString($this->id)."'
                     ";
         $database->query($sql);
 
@@ -151,19 +151,20 @@ class Property extends Main_object {
     public function finishCreatingTeren(){
         global $database;
         $sql = "UPDATE properties SET
-                      date_created = '".self::clean($this->date_created)."',
-                      transaction = '".self::clean($this->transaction)."',
-                      title = '".self::clean($this->title)."',
-                      surface = '".self::clean($this->surface)."',
-                      price = '".self::clean($this->price)."',
-                      commission = '".self::clean($this->commission)."',
-                      description = '".self::clean($this->description)."',
-                      address = '".self::clean($this->address)."',
-                      total_floors = '".self::clean($this->total_floors)."',
-                      contact_number = '".self::clean($this->contact_number)."',
-                      field_type = '".self::clean($this->field_type)."',
-                      field_classification = '".self::clean($this->field_classification)."'
-                       WHERE id = '".self::clean($this->id)."'
+                      date_created = '".$database->escapeString($this->date_created)."',
+                      transaction = '".$database->escapeString($this->transaction)."',
+                      title = '".$database->escapeString($this->title)."',
+                      surface = '".$database->escapeString($this->surface)."',
+                      category_id = '".$database->escapeString($this->category_id)."',
+                      price = '".$database->escapeString($this->price)."',
+                      commission = '".$database->escapeString($this->commission)."',
+                      description = '".$database->escapeString($this->description)."',
+                      address = '".$database->escapeString($this->address)."',
+                      total_floors = '".$database->escapeString($this->total_floors)."',
+                      contact_number = '".$database->escapeString($this->contact_number)."',
+                      field_type = '".$database->escapeString($this->field_type)."',
+                      field_classification = '".$database->escapeString($this->field_classification)."'
+                       WHERE id = '".$database->escapeString($this->id)."'
                     ";
         $database->query($sql);
 
@@ -233,7 +234,7 @@ class Property extends Main_object {
 
     public function getCategory($id){
         global $database;
-        $sql = "SELECT cat_name FROM category WHERE id = ".self::clean($id)." ";
+        $sql = "SELECT cat_name FROM category WHERE id = ".$database->escapeString($id)." ";
         $row = $database->query($sql);
 
 
@@ -244,19 +245,33 @@ class Property extends Main_object {
 
     }
 
-    public function getPhotos($id){
+    public function getPhotosNames($id){
         global $database;
-        $sql = "SELECT * FROM photo WHERE post_id = ".self::clean($id);
+        $sql = "SELECT * FROM photo WHERE post_id = ".$database->escapeString($id);
         $row = $database->query($sql);
 
         while($result = mysqli_fetch_assoc($row)){
-                echo "<img src='images/{$result['photo']}'height='300'>";
+            echo "<p><span>{$result['id']}</span> - {$result['photo']}".
+                ($result['is_featured'] == 'yes' ? " <i class=\"fas fa-dot-circle\" style='color: #00b894'></i>": "")
+
+            ."<a href=\"delete_property_photo.php?id={$result['id']}\" style='float: right;color: darkred' ><i class=\"fas fa-times\"></i></a></p>";
+
+        }
+    }
+
+    public function getPhotos($id){
+        global $database;
+        $sql = "SELECT * FROM photo WHERE post_id = ".$database->escapeString($id);
+        $row = $database->query($sql);
+
+        while($result = mysqli_fetch_assoc($row)){
+                echo "<img src='images/{$result['photo']}' class='modal-images'>";
         }
     }
 
     public function getFeaturedImage($id){
         global $database;
-        $sql = "SELECT * FROM photo WHERE post_id = ".self::clean($id);
+        $sql = "SELECT * FROM photo WHERE post_id = ".$database->escapeString($id);
         $row = $database->query($sql);
 
         while($result = mysqli_fetch_assoc($row)){
@@ -275,12 +290,12 @@ class Property extends Main_object {
         //echo $end_date;
 
         global $database;
-        $sql = "UPDATE properties SET expiration = ".self::clean($end_date)." WHERE id = ".self::clean($this->id)." ";
+        $sql = "UPDATE properties SET expiration = ".$database->escapeString($end_date)." WHERE id = ".$database->escapeString($this->id)." ";
         $database->query($sql);
     }
 
     public function convertUnixTimeToDate($unix_time){
-        return date("D M j G:i:s T Y", $unix_time);
+        return date("D M j G:i:s Y", $unix_time);
     }
 
     public function getRemainingExpirationTime($expiration){
@@ -299,20 +314,288 @@ class Property extends Main_object {
     public function deleteProperty(){
         global $database;
 
-        $sql = "DELETE FROM properties WHERE id = ".self::clean($this->id)." ";
+        $sql = "DELETE FROM properties WHERE id = ".$database->escapeString($this->id)." ";
         $database->query($sql);
+    }
+
+    public function optionIsChecked($needle,$haystack){
+        $n = $needle;
+        $h = $haystack;
+        $pos = strpos($h,$n,0);
+        if($pos !== false) {
+            echo  "checked";
+        } else {
+            echo "";
+        }
+    }
+
+    public function insertWishlist($post_id,$user_id){
+        global $database;
+        $sql = "INSERT INTO saved_properties (user_id,post_id) VALUES ('$user_id','$post_id')";
+        $database->query($sql);
+    }
+
+    public function getWhislistProperties($id){
+        global $database;
+        $sql = "SELECT post_id FROM saved_properties WHERE user_id = ".$database->escapeString($id);
+        $result = $database->query($sql);
+        $post_array = array();
+        while($row = mysqli_fetch_assoc($result)){
+            $post_array[] += $row['post_id'];
+        }
+        $post_array = array_unique($post_array);
+        foreach ($post_array as $value){
+            $sql = "SELECT * FROM photo LEFT JOIN properties ON post_id = properties.id WHERE photo.is_featured = 'yes' AND properties.id = {$value} ORDER BY properties.id DESC LIMIT 6";
+            $result = $database->query($sql);
+            while($row = mysqli_fetch_assoc($result)){
+                echo "<div class=\"col-md-4 col-xs-12\">
+                <div class=\"card custom-css-card\" >
+                <a href='property.php?id={$row['id']}'>
+                    <img src=\"images/{$row['photo']}\" class=\"card-img-top\" alt=\"...\">
+                    <div class=\"card-body\">
+                        <h2>{$row['title']}</h2>
+                        <div class=\"row card-row\">
+                            <div class=\"col-md-6\" style=\"padding-left:0px\">
+                                <div class=\"card-left\">
+                                    <div class=\"card-cluster\">
+                                        <div class=\"card-icon\"><i class=\"fas fa-exchange-alt\"></i></div>
+                                        <div class=\"card-text\">{$row['transaction']}</div>
+                                    </div>
+                                    <div class=\"card-cluster\">
+                                        <div class=\"card-icon\"><i class=\"fas fa-cookie\"></i></div>
+                                        <div class=\"card-text\">{$row['surface']}mp</div>
+                                    </div>
+                                    <div class=\"card-type\"></div>
+                                </div>
+                            </div>
+                            <div class=\"col-md-6\" style=\"padding-right:0px;padding-left:0px\">
+                                <div class=\"card-right\">
+                                    <div class=\"card-cluster\">
+                                        <div class=\"card-icon\"><i class=\"fas fa-home\"></i></div>
+                                        <div class=\"card-text\">{$row['type']}</div>
+                                    </div>
+                                    <div class=\"card-cluster\">
+                                        <div class=\"card-icon\"><i class=\"fas fa-comments-dollar\"></i></div>
+                                        <div class=\"card-text\">{$row['commission']}%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class=\"container\" style=\"padding-top: 15px\">
+                            <div class=\"row\">
+                                <div class=\"col-md-6 price\" style=\"padding-left:0px;margin-left:-10px \"><i class=\"fas fa-dollar-sign\"></i>{$row['price']}</div>
+                                <div class=\"col-md-6 card-link\" style=\"padding-right:0px;margin-left: 10px;margin-right;-10px;text-align: right\"> <span>See listing</span></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                </div>
+                </div>";
+            }
+        }
+        var_dump($result);
     }
 
 
 
+    public function getAllProperties($limit){
+        global $database;
+        global $session;
+        if(!$session->isSignedIn()){
+            $role= '';
+        } else {
+            $username = Users::clean($_SESSION['user_id']['username']);
+            $role = Users::clean($_SESSION['user_id']['role']);
+        }
+
+        $sql = "SELECT * FROM photo LEFT JOIN properties ON post_id = properties.id WHERE photo.is_featured = 'yes' ORDER BY properties.id DESC LIMIT $limit";
+        $result = $database->query($sql);
+        If(isset($_POST['wishlist'])){
+            $post_id = $_POST['post_id'];
+            $user_id = Users::clean($_SESSION['user_id']['id']);
+
+            $this->insertWishlist($post_id,$user_id);
+        }
+         while($row = mysqli_fetch_assoc($result)){
+
+             echo "
+             <div class=\"col-md-4 col-xs-12\">
+                <div class=\"card custom-css-card\" >
+                <a href='property.php?id={$row['id']}'>
+                    <img src=\"admin/images/{$row['photo']}\" class=\"card-img-top\" alt=\"...\" style='position:relative;'>
+                    ";
+
+                    if($role == "client"){
+                        echo "
+                        <div class='wishlist'>
+                        <form method='post'>
+                            <input type='hidden' name='post_id' value='{$row['id']}'>
+                            <button type='submit' name='wishlist' class='wishlist-button'><i class=\"far fa-heart\"></i></button>
+                        </form>
+                    </div>
+                        ";
+                    } else {
+                        echo '';
+                    }
+                 echo "
+                    <div class=\"card-body\">
+                        <h2>{$row['title']}</h2>
+                        <div class=\"row card-row\">
+                            <div class=\"col-md-6\" style=\"padding-left:0px\">
+                                <div class=\"card-left\">
+                                    <div class=\"card-cluster\">
+                                        <div class=\"card-icon\"><i class=\"fas fa-exchange-alt\"></i></div>
+                                        <div class=\"card-text\">{$row['transaction']}</div>
+                                    </div>
+                                    <div class=\"card-cluster\">
+                                        <div class=\"card-icon\"><i class=\"fas fa-cookie\"></i></div>
+                                        <div class=\"card-text\">{$row['surface']}mp</div>
+                                    </div>
+                                    <div class=\"card-type\"></div>
+                                </div>
+                            </div>
+                            <div class=\"col-md-6\" style=\"padding-right:0px;padding-left:0px\">
+                                <div class=\"card-right\">
+                                    <div class=\"card-cluster\">
+                                        <div class=\"card-icon\"><i class=\"fas fa-home\"></i></div>
+                                        <div class=\"card-text\">{$row['type']}</div>
+                                    </div>
+                                    <div class=\"card-cluster\">
+                                        <div class=\"card-icon\"><i class=\"fas fa-comments-dollar\"></i></div>
+                                        <div class=\"card-text\">{$row['commission']}%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class=\"container\" style=\"padding-top: 15px\">
+                            <div class=\"row\">
+                                <div class=\"col-md-6 price\" style=\"padding-left:0px;margin-left:-10px \"><i class=\"fas fa-dollar-sign\"></i>{$row['price']}</div>
+                                <div class=\"col-md-6 card-link\" style=\"padding-right:0px;margin-left: 10px;margin-right;-10px;text-align: right\"> <span>See Listing</span></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                </div>
+                </div>
+             ";
+         }
+    }
+
+    public function getSearchProperties($search_term){
+        global $database;
+        $sql = "SELECT * FROM photo LEFT JOIN properties ON post_id = properties.id WHERE properties.title LIKE '%".$database->escapeString($search_term)."%' ORDER BY properties.id DESC ";
+        $result = $database->query($sql);
+        while($row = mysqli_fetch_assoc($result)){
+            echo "
+             <div class=\"col-md-4 col-xs-12\">
+                <div class=\"card custom-css-card\" >
+                <a href='property.php?id={$row['id']}'>
+                    <img src=\"admin/images/{$row['photo']}\" class=\"card-img-top\" alt=\"...\">
+                    <div class=\"card-body\">
+                        <h2>{$row['title']}</h2>
+                        <div class=\"row card-row\">
+                            <div class=\"col-md-6\" style=\"padding-left:0px\">
+                                <div class=\"card-left\">
+                                    <div class=\"card-cluster\">
+                                        <div class=\"card-icon\"><i class=\"fas fa-exchange-alt\"></i></div>
+                                        <div class=\"card-text\">{$row['transaction']}</div>
+                                    </div>
+                                    <div class=\"card-cluster\">
+                                        <div class=\"card-icon\"><i class=\"fas fa-cookie\"></i></div>
+                                        <div class=\"card-text\">{$row['surface']}mp</div>
+                                    </div>
+                                    <div class=\"card-type\"></div>
+                                </div>
+                            </div>
+                            <div class=\"col-md-6\" style=\"padding-right:0px;padding-left:0px\">
+                                <div class=\"card-right\">
+                                    <div class=\"card-cluster\">
+                                        <div class=\"card-icon\"><i class=\"fas fa-home\"></i></div>
+                                        <div class=\"card-text\">{$row['type']}</div>
+                                    </div>
+                                    <div class=\"card-cluster\">
+                                        <div class=\"card-icon\"><i class=\"fas fa-comments-dollar\"></i></div>
+                                        <div class=\"card-text\">{$row['commission']}%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class=\"container\" style=\"padding-top: 15px\">
+                            <div class=\"row\">
+                                <div class=\"col-md-6 price\" style=\"padding-left:0px;margin-left:-10px \"><i class=\"fas fa-dollar-sign\"></i>{$row['price']}</div>
+                                <div class=\"col-md-6 card-link\" style=\"padding-right:0px;margin-left: 10px;margin-right;-10px;text-align: right\"> <span>See Listing</span></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                </div>
+                </div>
+             ";
+        }
+    }
+
+
+    public function getPhotosProperty($id){
+        global $database;
+        $sql = "SELECT * FROM photo WHERE post_id = ".$database->escapeString($id);
+        $row = $database->query($sql);
+
+        while($result = mysqli_fetch_assoc($row)){
+            echo "<div class=\"carousel-item\">
+                    <img class=\"d-block w-100\" src='admin/images/{$result['photo']}' alt=\"Second slide\">
+                  </div>";
+        }
+    }
+    public function getPhotosPropertyFeaturedImage($id){
+        global $database;
+        $sql = "SELECT * FROM photo WHERE post_id = ".$database->escapeString($id)." AND is_featured = 'yes'";
+        $row = $database->query($sql);
+
+        while($result = mysqli_fetch_assoc($row)){
+            echo "<div class=\"carousel-item active\">
+                    <img class=\"d-block w-100\" src='admin/images/{$result['photo']}' alt=\"Second slide\">
+                  </div>";
+        }
+    }
+
+    public function getAllPropertyImagesThumb($id){
+        global $database;
+        $sql = "SELECT * FROM photo WHERE post_id = ".$database->escapeString($id);
+        $row = $database->query($sql);
+
+        while($result = mysqli_fetch_assoc($row)){
+            echo "<img class='thumb-images-property' src='admin/images/{$result['photo']}' alt=\"Second slide\">";
+        }
+    }
+
+    public function getUsernameFromId($id){
+        global $database;
+        $sql = "SELECT user_id FROM properties WHERE id =".$database->escapeString($id);
+        $result = $database->query($sql);
+        while($row = mysqli_fetch_assoc($result)){
+            $sql = "SELECT username FROM users WHERE id = {$row['user_id']}";
+            $result = $database->query($sql);
+            return $row = current(mysqli_fetch_assoc($result));
+        }
 
 
 
 
+    }
 
-
-
-
+    public function stringToArray($string){
+        $array = explode(',',$string);
+        return $array;
+    }
 
 
 

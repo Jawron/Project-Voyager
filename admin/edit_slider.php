@@ -10,7 +10,7 @@ if(!$session->isSignedIn()){
     $username = Users::clean($_SESSION['user_id']['username']);
     $role = Users::clean($_SESSION['user_id']['role']);
     if($role != 'admin'){
-        redirect('edit_user.php?id='.Users::clean($_SESSION['user_id']['id']));
+        redirect('adm_index.php');
     }
     $id = Users::clean($_SESSION['user_id']['id']);
 }

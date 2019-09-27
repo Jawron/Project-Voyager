@@ -7,10 +7,13 @@ if(!$session->isSignedIn()){
 } else {
     $username = Users::clean($_SESSION['user_id']['username']);
     $role = Users::clean($_SESSION['user_id']['role']);
-    if($role != 'admin'){
+    if($role == 'client'){
         redirect('edit_user.php?id='.Users::clean($_SESSION['user_id']['id']));
     }
     $id = Users::clean($_SESSION['user_id']['id']);
+    if($role == 'client'){
+        redirect('adm_index.php');
+    }
 }
 
 ?>

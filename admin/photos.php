@@ -5,14 +5,24 @@
 if(!$session->isSignedIn()){
     redirect('login.php');
 } else {
+    $id = Users::clean($_SESSION['user_id']['id']);
     $username = Users::clean($_SESSION['user_id']['username']);
     $role = Users::clean($_SESSION['user_id']['role']);
-    if($role != 'admin'){
-        redirect('edit_user.php?id='.Users::clean($_SESSION['user_id']['id']));
+    if($role == 'client'){
+        redirect('adm_index.php');
     }
 }
+if($role == 'admin'){
+    $photos = Photo::findAll();
+} elseif ($role == 'broker'){
 
-$photos = Photo::findAll();
+    $photos = Photo::findByQuery("SELECT * FROM photo WHERE user_id = {$id}");
+} else {
+    redirect('adm_index.php');
+}
+
+
+
 
 ?>
 <div class="container"><!--  container alert  -->

@@ -1,49 +1,5 @@
 
-<!---->
-<!--<nav class="navbar navbar-expand-lg justify-content-center ">-->
-<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--        <span class="navbar-toggler-icon"></span>-->
-<!--    </button>-->
-<!--    <div class="collapse navbar-collapse justify-content-center " id="navbarNav">-->
-<!--        <ul class="navbar-nav ">-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link active" href="users.php">USERS</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="categories.php">Categories</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="add_property.php">Add Property</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="properties.php">properties</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item dropdown">-->
-<!--                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gallery</a>-->
-<!--                <div class="dropdown-menu">-->
-<!--                    <a class="dropdown-item" href="add_photo.php">Add Photos</a>-->
-<!--                    <a class="dropdown-item" href="photos.php">Gallery</a>-->
-<!---->
-<!--                </div>-->
-<!--            </li>-->
-<!--            <li class="nav-item dropdown">-->
-<!--                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sliders</a>-->
-<!--                <div class="dropdown-menu">-->
-<!--                    <a class="dropdown-item" href="create_slider.php">Add Slider</a>-->
-<!--                    <a class="dropdown-item" href="sliders.php">Sliders</a>-->
-<!---->
-<!--                </div>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="settings.php" tabindex="-1">Settings</a>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--</nav>-->
-<!---->
+
 
 <style>
     .menu-icon-admin{
@@ -75,6 +31,12 @@
     }
 </style>
 
+<div <?php
+if($_SESSION['user_id']['role'] == "client") {
+    echo "style='display:none'";
+}
+?>>
+
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-menu-admin" style="padding-top: 0px;background-color: rgba(105,121,126 ,0.4) !important;padding-bottom:5px">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,12 +56,23 @@
                     properties <span class="sr-only">(current)</span>
                 </a>
             </li>
+            <?php if($_SESSION['user_id']['role'] == "admin") { ?>
             <li class="nav-item menu-li-admin">
                 <a class="nav-link" href="users.php">
                     <p class="menu-icon-admin"><i class="fas fa-users"></i></p>
                     Users <span class="sr-only">(current)</span>
                 </a>
             </li>
+
+
+                <li class="nav-item menu-li-admin">
+                    <a class="nav-link" href="settings.php">
+                        <p class="menu-icon-admin"><i class="fas fa-cogs"></i></p>
+                        settings <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+
+            <?php } ?>
             <li class="nav-item menu-li-admin">
                 <a class="nav-link" href="categories.php">
                     <p class="menu-icon-admin"><i class="fas fa-align-center"></i></p>
@@ -112,14 +85,10 @@
                     gallery <span class="sr-only">(current)</span>
                 </a>
             </li>
-            <li class="nav-item menu-li-admin">
-                <a class="nav-link" href="settings.php">
-                    <p class="menu-icon-admin"><i class="fas fa-cogs"></i></p>
-                    settings <span class="sr-only">(current)</span>
-                </a>
-            </li>
+
 
 
         </ul>
     </div>
 </nav>
+</div>

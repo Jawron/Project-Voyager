@@ -144,13 +144,18 @@ class Users extends  Main_object
         if (empty($password)) {
             $errors[] = "Password field cannot be <strong>EMPTY</strong>";
         }
+        if (!preg_match('/^[A-Za-z][A-Za-z]{5,31}$/', "$username")){
+            $errors[] = "Username must contain only <strong>Letters</strong> and at least 6 characters";
+        }
+        if (!preg_match('/(^(?=.*\d))^[A-Za-z][A-Za-z0-9]{5,31}$/', "$password")){
+            $errors[] = "Password must contain only <strong>Letters and Numbers</strong>  and at least 6 characters";
+        }
 
         if (!empty($errors)) {
             foreach ($errors as $error) {
                 echo Main_object::displayValidationErrors($error);
             }
         } else {
-
                 $sql = "SELECT id,username,role,password,email FROM users WHERE ";
                 $sql .= "username = '$username' ";
                 $sql .= "AND active = 1 ";
@@ -301,8 +306,8 @@ class Users extends  Main_object
             //Creates the headers,subject,message for the activate user email
             $subject = "Activate account";
             $msg = "Please click the link below to activate your account<br>
-            <a href='".$_SERVER['HTTP_HOST']."/login/activate.php?email=$email&code=$validation_code'>
-            http://".$_SERVER['HTTP_HOST']."/login/activate.php?email=$email&code=$validation_code
+            <a href='".$_SERVER['HTTP_HOST']."/admin/activate.php?email=$email&code=$validation_code'>
+            http://".$_SERVER['HTTP_HOST']."/admin/activate.php?email=$email&code=$validation_code
             </a>";
             $headers = "From: noreply@localhost.ro";
 
@@ -337,9 +342,20 @@ class Users extends  Main_object
                 }
             }
 
+            if (!preg_match('/^[A-Za-z][A-Za-z]{5,31}$/', "$username")){
+                $errors[] = "Username must contain only <strong>Letters</strong> and at least 6 characters";
+            }
+            if (!preg_match('/(^(?=.*\d))^[A-Za-z][A-Za-z0-9]{5,31}$/', "$password")){
+                $errors[] = "Password must contain only <strong>Letters and Numbers</strong>  and at least 6 characters";
+            }
+
             //Checks if the mail exists and outputs an error if it does
             if ($this->emailExist($email)) {
                 $errors[] = "<strong>$email</strong> already exists!!";
+            }
+
+            if(!preg_match('/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/',"$email")){
+                $errors[] = "<strong>Email</strong> is not valid, check again for your email adress!!";
             }
 
             //Checks if the username exists and outputs an error if it does
@@ -447,10 +463,11 @@ class Users extends  Main_object
                     $subject = "Please reset your password";
                     $msg = "Here is your password reset code:<br>
                     <strong>$validation_code</strong><br>
-                    <strong>http://localhost:8181/Project-Voyager/admin/code.php?email=$email&code=$validation_code</strong>
-                    Click here to reset password <a href=''><strong>GO TO RECOVER PASSWORD</strong></a>
+                    <strong>".$_SERVER['HTTP_HOST']."/admin/code.php?email=$email&code=$validation_code</strong>
+                    Click here to reset password <a href='".$_SERVER['HTTP_HOST']."/admin/code.php?email=$email&code=$validation_code'><strong>GO TO RECOVER PASSWORD</strong></a>
                 ";
                     $headers = "From my appLogin";
+
 
                     if($this->sentMail($email,$subject,$msg,$headers)){
                         echo "<div class=\"alert alert - warning alert - dismissible fade show\" role=\"alert\">
@@ -532,18 +549,28 @@ class Users extends  Main_object
                     if($_POST['token'] === $_SESSION['token']) {
 
                         if($_POST['password'] === $_POST['confirm_password']){
+                            $errors = [];
+                            if (!preg_match('/(^(?=.*\d))^[A-Za-z][A-Za-z0-9]{5,31}$/', "{$_POST['password']}")){
+                                $errors[] = "Password must contain only <strong>Letters and Numbers</strong> and at least 6 characters";
+                            }
+                            if (!empty($errors)) {
+                                foreach ($errors as $error) {
+                                    echo $this->displayValidationErrors($error);
+                                }
+                            } else {
+                                $updated_passowrd = Main_object::clean($_POST['password']);
+                                $encripted_pass = sha1($updated_passowrd);
+                                $email = Main_object::clean($_GET['email']);
 
-                            $updated_passowrd = Main_object::clean($_POST['password']);
-                            $encripted_pass = sha1($updated_passowrd);
-                            $email = Main_object::clean($_GET['email']);
+                                $sql = "UPDATE users SET password = '".$database->escapeString(
+                                        $encripted_pass
+                                    )."', validation_code = 0 WHERE email = '".$database->escapeString($email)."'";
+                                $result = $database->query($sql);
 
-                            $sql = "UPDATE users SET password = '".$database->escapeString($encripted_pass)."', validation_code = 0 WHERE email = '".$database->escapeString($email)."'";
-                            $result = $database->query($sql);
+                                $session->message("Your password has been updated, please login");
 
-                            $session->message("Your password has been updated, please login");
-
-                            redirect("login.php");
-
+                                redirect("login.php");
+                            }
                         }
 
 

@@ -7,8 +7,8 @@ if(!$session->isSignedIn()){
 } else {
     $username = Users::clean($_SESSION['user_id']['username']);
     $role = Users::clean($_SESSION['user_id']['role']);
-    if($role != 'admin'){
-        redirect('edit_user.php?id='.Users::clean($_SESSION['user_id']['id']));
+    if($role == 'client'){
+        redirect('adm_index.php');
     }
     $id = Users::clean($_SESSION['user_id']['id']);
 }
@@ -63,52 +63,7 @@ if(isset($_POST['submit'])){
     ?>
 </div>
 <style>
-    .photo-info{
-        background-color: rgba(239,235,233 ,1);
-        color: rgba(78,52,46 ,1);
-        padding: 10px;
-        height: 100%;
-        box-shadow: #fff 0px 2px 2px;
-        border-radius: 10px;
-        border: 1px solid rgba(78,52,46 ,1);
-    }
-    .photo-info strong {
-        text-shadow: #fff 1px 1px 1px;
-    }
-    .photo-edit-img{
-        border: 2px solid rgba(96,125,139,1);
-        border-radius: 10px;
-    }
-    .edit-photo-button{
-             background-color: #038387;
-             border:1px solid transparent;
-             border-radius: 0px;
-             width:49.5%;
-        padding: 10px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 800;
-         }
-    .edit-photo-button:hover {
-        color: #038387;
-        border: 1px solid #038387;
-        background-color: white;
-    }
-    .delete-photo-button{
-        background-color: rgba(198,40,40 ,1);
-        border:1px solid transparent;
-        border-radius: 0px;
-        width:49.5%;
-        padding: 10px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 800;
-    }
-    .delete-photo-button:hover {
-        color: rgba(198,40,40 ,1);
-        border: 1px solid rgba(198,40,40 ,1);
-        background-color: white;
-    }
+
 </style>
 
 <div class="container">

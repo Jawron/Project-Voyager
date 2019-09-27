@@ -8,6 +8,9 @@ if(!$session->isSignedIn()){
     $username = Users::clean($_SESSION['user_id']['username']);
     $role = Users::clean($_SESSION['user_id']['role']);
     $id = Users::clean($_SESSION['user_id']['id']);
+    if($role == 'client'){
+        redirect('adm_index.php');
+    }
 }
 
 ?>

@@ -16,7 +16,7 @@ class Category extends Main_object {
     public function deleteCategory(){
         global $database;
 
-        $sql = "DELETE FROM category WHERE id = ".self::clean($this->id)." ";
+        $sql = "DELETE FROM category WHERE id = ".$database->escapeString($this->id)." ";
         $database->query($sql);
     }
 

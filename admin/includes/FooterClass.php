@@ -57,7 +57,7 @@ class FooterClass extends  Main_object {
         $sql = "UPDATE footer SET in_use = 'no' WHERE in_use = 'yes'";
         $database->query($sql);
 
-        $sql = "UPDATE footer SET field_1 = '".self::clean($this->field_1)."',copyright = '".self::clean($this->copyright)."', in_use = 'yes' WHERE type = '".self::clean($this->type)."'";
+        $sql = "UPDATE footer SET field_1 = '".$database->escapeString($this->field_1)."',copyright = '".$database->escapeString($this->copyright)."', in_use = 'yes' WHERE type = '".$database->escapeString($this->type)."'";
         $database->query($sql);
 
 
@@ -68,7 +68,7 @@ class FooterClass extends  Main_object {
         $sql = "UPDATE footer SET in_use = 'no' WHERE in_use = 'yes'";
         $database->query($sql);
 
-        $sql = "UPDATE footer SET field_1 = '".self::clean($this->field_1)."', field_2 = '".self::clean($this->field_2)."', copyright = '".self::clean($this->copyright)."', in_use = 'yes' WHERE type = '".self::clean($this->type)."'";
+        $sql = "UPDATE footer SET field_1 = '".$database->escapeString($this->field_1)."', field_2 = '".$database->escapeString($this->field_2)."', copyright = '".$database->escapeString($this->copyright)."', in_use = 'yes' WHERE type = '".$database->escapeString($this->type)."'";
         $database->query($sql);
 
 
@@ -79,7 +79,7 @@ class FooterClass extends  Main_object {
         $sql = "UPDATE footer SET in_use = 'no' WHERE in_use = 'yes'";
         $database->query($sql);
 
-        $sql = "UPDATE footer SET field_1 = '".self::clean($this->field_1)."', field_2 = '".self::clean($this->field_2)."', field_3 = '$".self::clean($this->field_3)."',copyright = '".self::clean($this->copyright)."', in_use = 'yes' WHERE type = '".self::clean($this->type)."'";
+        $sql = "UPDATE footer SET field_1 = '".$database->escapeString($this->field_1)."', field_2 = '".$database->escapeString($this->field_2)."', field_3 = '".$database->escapeString($this->field_3)."',copyright = '".$database->escapeString($this->copyright)."', in_use = 'yes' WHERE type = '".$database->escapeString($this->type)."'";
         $database->query($sql);
 
 
@@ -90,7 +90,7 @@ class FooterClass extends  Main_object {
         $sql = "UPDATE footer SET in_use = 'no' WHERE in_use = 'yes'";
         $database->query($sql);
 
-        $sql = "UPDATE footer SET field_1 = '".self::clean($this->field_1)."', field_2 = '".self::clean($this->field_2)."',field_3 = '".self::clean($this->field_3)."', field_4 = '".self::clean($this->field_4)."', copyright = '".self::clean($this->copyright)."',in_use = 'yes' WHERE type = '$this->type'";
+        $sql = "UPDATE footer SET field_1 = '".$database->escapeString($this->field_1)."', field_2 = '".$database->escapeString($this->field_2)."',field_3 = '".$database->escapeString($this->field_3)."', field_4 = '".$database->escapeString($this->field_4)."', copyright = '".$database->escapeString($this->copyright)."',in_use = 'yes' WHERE type = '$this->type'";
         $database->query($sql);
 
 

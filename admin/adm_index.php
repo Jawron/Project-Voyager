@@ -7,9 +7,31 @@ if(!$session->isSignedIn()){
 } else {
     $username = Users::clean($_SESSION['user_id']['username']);
     $role = Users::clean($_SESSION['user_id']['role']);
+    $id = Users::clean($_SESSION['user_id']['id']);
 }
 
 ?>
+
+<?php
+if($role == "client"){
+    include('client_dashboard.php');
+}
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="container">
 

@@ -7,6 +7,9 @@ if(!$session->isSignedIn()){
 } else {
     $username = Users::clean($_SESSION['user_id']['username']);
     $role = Users::clean($_SESSION['user_id']['role']);
+    if($role != 'admin'){
+        redirect('adm_index.php');
+    }
 }
 
 ?>
@@ -78,24 +81,39 @@ redirect("users.php");
     }
     ?>
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#file-css-upload-1').change(function(e){
+            var fileName = e.target.files[0].name;
+            $('.file-upload-text-1').text(fileName);
+        });
+        $('#file-css-upload-2').change(function(e){
+            var fileName = e.target.files[0].name;
+            $('.file-upload-text-2').text(fileName);
+        });
+        $('#file-css-upload-3').change(function(e){
+            var fileName = e.target.files[0].name;
+            $('.file-upload-text-3').text(fileName);
+        });
 
+    });
+</script>
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3 col-xs-12 offset-xs-0">
             <div class="header-container">
-                <h1 style="padding-top:50px;text-align: center">Add new Images</h1>
+                <h1 style="padding-top:50px;text-align: center">Add new User</h1>
 
             </div>
             <form action="" enctype="multipart/form-data" method="post">
                 <div class="form-group">
-                    <label for="title">Choose images to upload</label>
-                    <input type="file" style="display: none" name="file_upload" id="file-7" class="inputfile inputfile-6" data-multiple-caption="{count} files selected" multiple />
-                    <label for="file-7"><span></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
-                                <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1
-                             0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6
-                              3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg>
-                            Choose a file&hellip;</strong>
+                    <label >Choose images to upload</label>
+                    <label class="label-css" for="file-css-upload-2">
+                        <span class="file-upload-text-2">File upload</span>
+                        <span class="button-file-upload-2"><i class="fas fa-cloud-upload-alt"></i> Browse</span>
                     </label>
+                    <input type="file"  name="file_upload" id="file-css-upload-2" class="upload-field-css" >
+
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>

@@ -3,10 +3,10 @@
 $footer_type = new FooterClass();
 if(isset($_POST['submit3'])){
     $footer_type->type = "three_column";
-    $footer_type->field_1 = $_POST['field_1'];
-    $footer_type->field_2 = $_POST['field_2'];
-    $footer_type->field_3 = $_POST['field_3'];
-    $footer_type->copyright = $_POST['copyright'];
+    $footer_type->field_1 = FooterClass::clean($_POST['field_1']);
+    $footer_type->field_2 = FooterClass::clean($_POST['field_2']);
+    $footer_type->field_3 = FooterClass::clean($_POST['field_3']);
+    $footer_type->copyright = FooterClass::clean($_POST['copyright']);
 
 
     $footer_type->saveFooterThreeColumn();
@@ -16,7 +16,7 @@ if(isset($_POST['submit3'])){
 
 $existing_footer = new FooterClass();
 
-$existing_footer->returnFooterInfo('two_column');
+$existing_footer->returnFooterInfo('three_column');
 ?>
 <h4>Currently using the 3 Column format</h4>
 

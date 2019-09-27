@@ -5,14 +5,21 @@
 if(!$session->isSignedIn()){
     redirect('login.php');
 } else {
+    $id = Users::clean($_SESSION['user_id']['id']);
     $username = Users::clean($_SESSION['user_id']['username']);
     $role = Users::clean($_SESSION['user_id']['role']);
-    if($role != 'admin'){
-        redirect('edit_user.php?id='.Users::clean($_SESSION['user_id']['id']));
+    if($role == 'client'){
+        redirect('adm_index.php');
     }
 }
 
-$properties = Property::findAll();
+if($role == 'admin'){
+    $properties = Property::findAll();
+} elseif ($role == 'broker'){
+    $properties = Property::findByQuery("SELECT * FROM properties WHERE user_id = $id");
+} else {
+    redirect('edit_user.php?id='.Users::clean($_SESSION['user_id']['id']));
+}
 
 ?>
 
@@ -73,7 +80,11 @@ $properties = Property::findAll();
                 <div class="col-md-1">EXPIRES</div>
                 <div class="col-md-3">ACTIONS</div>
             </div>
-            <?php foreach ($properties as $property) { ?>
+            <?php foreach ($properties as $property) {
+
+
+
+                ?>
             <div class="properties-row">
                 <div class="col-md-1">
                     <p class="property-id"><?php echo $property->id; ?></p>
@@ -108,7 +119,8 @@ $properties = Property::findAll();
                     </div>
                 </div>
             </div>
-            <?php } ?>
+            <?php
+                 } ?>
         </div>
     </div>
 </div>

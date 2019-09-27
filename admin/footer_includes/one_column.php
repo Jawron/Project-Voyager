@@ -3,8 +3,8 @@
 $footer_type = new FooterClass();
 if(isset($_POST['submit1'])){
     $footer_type->type = "one_column";
-    $footer_type->field_1 = $_POST['field_1'];
-    $footer_type->copyright = $_POST['copyright'];
+    $footer_type->field_1 = FooterClass::clean($_POST['field_1']);
+    $footer_type->copyright = FooterClass::clean($_POST['copyright']);
 
     $footer_type->saveFooterOneColumn();
 }

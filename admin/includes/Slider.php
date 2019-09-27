@@ -110,7 +110,7 @@ class Slider extends Main_object {
 
     public function getPhotos($id){
         global $database;
-        $sql = "SELECT photo,title,description,call_to_action FROM slides WHERE slider_id = ".self::clean($id);
+        $sql = "SELECT photo,title,description,call_to_action FROM slides WHERE slider_id = ".$database->escapeString($id);
         $row = $database->query($sql);
         while($result = mysqli_fetch_assoc($row)){
 //            echo $result['id'];
@@ -137,7 +137,7 @@ class Slider extends Main_object {
 
     public function getSlidesToEdit($id){
         global $database;
-        $sql = "SELECT * FROM slides WHERE slider_id = ".self::clean($id);
+        $sql = "SELECT * FROM slides WHERE slider_id = ".$database->escapeString($id);
         $row = $database->query($sql);
         while($result = mysqli_fetch_assoc($row)){
             echo "
@@ -241,7 +241,7 @@ class Slider extends Main_object {
     public function deleteSlider(){
         global $database;
 
-        $sql = "DELETE FROM slider WHERE id = ".self::clean($this->id)." ";
+        $sql = "DELETE FROM slider WHERE id = ".$database->escapeString($this->id)." ";
         $database->query($sql);
     }
 
@@ -250,17 +250,64 @@ class Slider extends Main_object {
         $sql = "UPDATE slider SET in_use = 0 WHERE in_use = 1";
         $database->query($sql);
 
-        $sql = "UPDATE slider SET in_use = 1 WHERE title = '".self::clean("$slider")."'";
+        $sql = "UPDATE slider SET in_use = 1 WHERE title = '".$database->escapeString("$slider")."'";
         $database->query($sql);
     }
 
     public function returnActiveSlider(){
         global $database;
-        $sql = "SELECT title FROM slider WHERE in_use = 1";
+        $sql = "SELECT title,id FROM slider WHERE in_use = 1";
         $result = $database->query($sql);
          while ($row = mysqli_fetch_assoc($result)){
              echo "{$row['title']}";
          }
+    }
+
+    public function returnFrontPageSlider(){
+        global $database;
+        $sql = "SELECT title,id FROM slider WHERE in_use = 1 LIMIT 1";
+        $result = $database->query($sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $slider_id = $row['id'];
+//            $sql = "SELECT * FROM slides WHERE slider_id = {$row['id']}";
+//            $result = $database->query($sql);
+//            while($slides = mysqli_fetch_assoc($result)){
+//                echo $slides['photo'];
+//                var_dump($slides);
+//            }
+//            echo $slider_id;
+        }
+            $sql = "SELECT * FROM slides WHERE slider_id = {$slider_id}";
+            $result = $database->query($sql);
+            while($slides = mysqli_fetch_assoc($result)){
+//                echo "
+//                <div class='slide'>
+//                    <img src='admin/images/{$slides['photo']}'>
+//                    <div class='container'>
+//                        <div class='slider-text-info'>
+//                            <p class='title-slider'>{$slides['title']}</p>
+//                            <p class='desc'>{$slides['description']}</p>
+//                            <p class='call-to-action'><a href='front-properties.php'>{$slides['call_to_action']} <i class='fas fa-arrow-right'></i></a></p>
+//                        </div>
+//                    </div>
+//                </div>
+//                ";
+                echo "
+                    <div class=\"carousel-item  \">
+                        <img src='admin/images/{$slides['photo']}' alt=\"Los Angeles\" width=\"1100\" height=\"610\">
+                        <div class='container-fluid'>
+                            <div class='slider-text-info'>
+                                <p class='title-slider'>{$slides['title']}</p>
+                                <p class='desc'>{$slides['description']}</p>
+                                <p class='call-to-action'><a href='front-properties.php'>{$slides['call_to_action']} <i class='fas fa-arrow-right'></i></a></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                ";
+
+        }
+
     }
 
 

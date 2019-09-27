@@ -6,23 +6,23 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarText">
         <ul class="navbar-nav mx-5">
-            <?php
-            if($_SESSION['user_id']['role'] == "admin"){
-                echo "<li class=\"nav-item\">
-                <a class=\"nav-link\" href=\"#\">only admins sees this</a>
-            </li>";
-            }
-            ?>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="far fa-bell"></i> Notifications</span></a>
+                <a class="nav-link no-shadow" href="../index.php"><i class="fab fa-houzz"></i> Homepage</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="far fa-envelope"></i> Messages</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="logout.php"><i class="fas fa-user-slash"></i> Logout</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle no-shadow" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Useful Links
+                </a>
+                <div class="dropdown-menu custom-dropmenu-admin" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="edit_user.php?id=<?php echo $_SESSION['user_id']['id'];?>"><i class="fas fa-user"></i> Edit Persona</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="logout.php"><i class="fas fa-user-slash"></i> Logout</a>
+                </div>
             </li>
         </ul>
     </div>
 </nav>
 
+<style>
+
+</style>

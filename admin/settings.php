@@ -7,13 +7,16 @@ if(!$session->isSignedIn()){
 } else {
     $username = Users::clean($_SESSION['user_id']['username']);
     $role = Users::clean($_SESSION['user_id']['role']);
+    if($role != 'admin'){
+        redirect('adm_index.php');
+    }
 }
 
 ?>
 <?php
 $footer = new FooterClass();
 if(isset($_POST['submit_footer_type'])){
-    $footer->type = $_POST['type'];
+    $footer->type = FooterClass::clean($_POST['type']);
     $footer->saveFooterType();
     $session->message("Settings Updated");
 }

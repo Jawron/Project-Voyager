@@ -3,11 +3,11 @@
 $footer_type = new FooterClass();
 if(isset($_POST['submit4'])){
     $footer_type->type = "four_column";
-    $footer_type->field_1 = $_POST['field_1'];
-    $footer_type->field_2 = $_POST['field_2'];
-    $footer_type->field_3 = $_POST['field_3'];
-    $footer_type->field_4 = $_POST['field_4'];
-    $footer_type->copyright = $_POST['copyright'];
+    $footer_type->field_1 = FooterClass::clean($_POST['field_1']);
+    $footer_type->field_2 = FooterClass::clean($_POST['field_2']);
+    $footer_type->field_3 = FooterClass::clean($_POST['field_3']);
+    $footer_type->field_4 = FooterClass::clean($_POST['field_4']);
+    $footer_type->copyright = FooterClass::clean($_POST['copyright']);
 
 
 

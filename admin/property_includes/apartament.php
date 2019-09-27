@@ -1,6 +1,4 @@
-<?php
 
-?>
 
 
 <?php
@@ -32,14 +30,27 @@ if(isset($_POST['submit'])){
     if(!empty($_POST['options'])){
         $property->options = $_POST['options'];
     }
+
     try {
-            $property->finishCreatingApartment();
-            $property->propertyExpiration($property->expiration);
-            $property->setOptions();
-            $photo->saveImages($_FILES['upload'], $_SESSION['user_id']['id'], $property->id );
-            $photo->isFeatured($_FILES['featured'], $_SESSION['user_id']['id'], $property->id);
-            $session->message("Property successfully created!");
-            redirect("edit_property_type.php?id={$property->id}");
+            if(!empty($_POST['title']) && !empty($_POST['price']) && !empty($_POST['contact_number'])){
+                $property->finishCreatingApartment();
+                $property->propertyExpiration($property->expiration);
+                $property->setOptions();
+                $photo->saveImages($_FILES['upload'], $_SESSION['user_id']['id'], $property->id );
+                $photo->isFeatured($_FILES['featured'], $_SESSION['user_id']['id'], $property->id);
+                $session->message("Property successfully created!");
+                redirect("edit_property_type.php?id={$property->id}");
+            } else {
+                echo "
+                <br>
+                <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+                  <strong>Attention!</strong> You should check in on some of those fields below.Complete all of the required fields.
+                  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                    <span aria-hidden=\"true\">&times;</span>
+                  </button>
+                </div>
+                ";
+            }
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
@@ -79,143 +90,12 @@ if(isset($_POST['submit'])){
         ";
     }
     ?>
+    <?php
 
+
+    ?>
 </div>
-<style>
-    .property-custom-css > .nav-item{
-        background-color: transparent;
-        text-align: center;
-        color: #1d2124;
-    }
-    .property-custom-css > .nav-item .nav-link{
-        background-color: rgba(239,154,154 ,1);
-        color: #1d2124;
-        border-radius: 0;
-        font-weight: 500;
-    }
-    .property-custom-css .nav-item .active{
-        background-color: rgba(198,40,40 ,1);
-        color: #fff;
-        font-weight: 600;
-    }
-    .property-custom-css .nav-item .active::before{
-        content: '';
-        width: 10px;
-        height: 10px;
-        background-color: #fff;
-        position: absolute;
-        left: 30px;
-        top: 14px;
-        border-radius: 50%;
-        border: 1px solid #fff;
-    }
-    .property-custom-css .nav-item .active::after{
-        content: '';
-        width: 10px;
-        height: 10px;
-        position: absolute;
-        background-color: transparent;
-        top: 27px;
-        left: 48%;
-        border-left: 2px solid #fff;
-        border-bottom: 2px solid #fff;
-        transform: rotate(-45deg);
 
-    }
-    .next-tab{
-        padding: 10px 30px;
-        background-color: rgba(198,40,40 ,1);
-        color: white !important;
-        float: right;
-        font-weight: 700;
-        transition: 0.7s;
-    }
-    .next-tab:hover{
-        background-color: rgba(198,40,40 ,0.7);
-    }
-    .previous-tab{
-        padding: 10px 30px;
-        background-color: rgba(198,40,40 ,1);
-        color: white !important;
-        font-weight: 700;
-        transition: 0.7s;
-    }
-    .previous-tab:hover{
-        background-color: rgba(198,40,40 ,0.7);
-    }
-
-
-
-
-
-    /* The container */
-    .checkbox-custom {
-        display: block;
-        position: relative;
-        padding-left: 30px;
-        margin-bottom: 12px;
-        cursor: pointer;
-        font-size: 1em;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-    /* Hide the browser's default checkbox */
-    .checkbox-custom input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-    }
-
-    /* Create a custom checkbox */
-    .checkmark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 20px;
-        width: 20px;
-        background-color: rgba(158,158,158 ,1);
-    }
-
-    /* On mouse-over, add a grey background color */
-    .checkbox-custom:hover input ~ .checkmark {
-        background-color: #ccc;
-    }
-
-    /* When the checkbox is checked, add a blue background */
-    .checkbox-custom input:checked ~ .checkmark {
-        background-color: #2196F3;
-    }
-
-    /* Create the checkmark/indicator (hidden when not checked) */
-    .checkmark:after {
-        content: "";
-        position: absolute;
-        display: none;
-    }
-
-    /* Show the checkmark when checked */
-    .checkbox-custom input:checked ~ .checkmark:after {
-        display: block;
-    }
-
-    /* Style the checkmark/indicator */
-    .checkbox-custom .checkmark:after {
-        left: 7px;
-        top: 4px;
-        width: 6px;
-        height: 11px;
-        border: solid white;
-        border-width: 0 3px 3px 0;
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
-    }
-</style>
 <script type="text/javascript">
     $(document).ready(function(){
         $('#file-css-upload-1').change(function(e){
@@ -233,11 +113,8 @@ if(isset($_POST['submit'])){
 
     });
 </script>
-<br>
-<br>
-<br>
-<br>
 
+<h6>Property type: Apartament</h6>
 <form action="" enctype="multipart/form-data" method="post">
     <ul class="nav nav-pills mb-3 property-custom-css" id="pills-tab" role="tablist">
         <li class="nav-item col-md-3 col-xs-12">
@@ -621,38 +498,6 @@ if(isset($_POST['submit'])){
 
 
 
-
-
-<!---->
-<!--                <label class="checkbox-custom">Two-->
-<!--                    <input type="checkbox" name="options[]" value="">-->
-<!--                    <span class="checkmark"></span>-->
-<!--                </label>-->
-<!--                <label class="checkbox-custom">Two-->
-<!--                    <input type="checkbox" name="options[]" value="">-->
-<!--                    <span class="checkmark"></span>-->
-<!--                </label>-->
-<!--                <label class="checkbox-custom">Two-->
-<!--                    <input type="checkbox" name="options[]" value="">-->
-<!--                    <span class="checkmark"></span>-->
-<!--                </label>-->
-<!--                <label class="checkbox-custom">Two-->
-<!--                    <input type="checkbox" name="options[]" value="">-->
-<!--                    <span class="checkmark"></span>-->
-<!--                </label>-->
-<!---->
-<!---->
-<!---->
-<!---->
-<!--                <label for="options">options</label>-->
-<!--                <input type="checkbox" name="options[]" value="Daily">Daily<br>-->
-<!--                <input type="checkbox" name="options[]" value="Sunday">Sunday<br>-->
-<!--                <input type="checkbox" name="options[]" value="Monday">Monday<br>-->
-<!--                <input type="checkbox" name="options[]" value="Tuesday">Tuesday <br>-->
-<!--                <input type="checkbox" name="options[]" value="Wednesday">Wednesday<br>-->
-<!--                <input type="checkbox" name="options[]" value="Thursday">Thursday <br>-->
-<!--                <input type="checkbox" name="options[]" value="Friday">Friday<br>-->
-<!--                <input type="checkbox" name="options[]" value="Saturday">Saturday <br>-->
             </div>
             <a class="previous-tab" id="pills-profile-tab" >Previous</a>
 <br>
@@ -693,74 +538,3 @@ if(isset($_POST['submit'])){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-<!--<h1>apartament</h1>-->
-<!---->
-<!--<form action="" enctype="multipart/form-data" method="post">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-md-6">-->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!--                        </div>-->
-<!--                        <div class="col-md-6">-->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!--                        </div>-->
-<!---->
-<!--                    </div>-->
-<!--                    -->
-<!--                </form>-->

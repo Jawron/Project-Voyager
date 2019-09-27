@@ -20,7 +20,7 @@ class Photo extends Main_object {
 
     public function getUserById($id){
         global $database;
-        $sql = "SELECT username FROM users WHERE id = ".self::clean("$id");
+        $sql = "SELECT username FROM users WHERE id = ".$database->escapeString("$id");
         $result = $database->query($sql);
 
         while($row = mysqli_fetch_assoc($result)){
@@ -97,8 +97,8 @@ class Photo extends Main_object {
 
     public function saveEditedPhoto(){
         global $database;
-        $sql = "UPDATE photo SET caption = '".self::clean($this->caption)."', alt_text = '".self::clean($this->alt_text)."'";
-        $sql .= " WHERE id = ".self::clean($this->id)."";
+        $sql = "UPDATE photo SET caption = '".$database->escapeString($this->caption)."', alt_text = '".$database->escapeString($this->alt_text)."'";
+        $sql .= " WHERE id = ".$database->escapeString($this->id)."";
         $database->query($sql);
     }
 
@@ -107,7 +107,7 @@ class Photo extends Main_object {
 
         global $database;
 
-        $sql = "DELETE FROM photo WHERE id = ".self::clean($this->id)." ";
+        $sql = "DELETE FROM photo WHERE id = ".$database->escapeString($this->id)." ";
         if($database->query($sql)) {
             $target_path = $this->upload_directory.$this->photo;
             return unlink($target_path);
@@ -175,15 +175,15 @@ class Photo extends Main_object {
                 echo "Uploaded succesfully";
                 global $database;
 
-                $sql = "SELECT * FROM photo WHERE post_id = ".self::clean($post_id)." AND is_featured = 'yes'";
+                $sql = "SELECT * FROM photo WHERE post_id = ".$database->escapeString($post_id)." AND is_featured = 'yes'";
                 $result = mysqli_fetch_assoc($database->query($sql));
 
                 if(!empty($result)) {
                     if ($result['is_featured'] == 'yes') {
                         $id = $result['id'];
-                        $sql = "UPDATE photo SET photo = '".self::clean($this->photo)."' WHERE post_id = ".self::clean(
+                        $sql = "UPDATE photo SET photo = '".$database->escapeString($this->photo)."' WHERE post_id = ".$database->escapeString(
                                 $post_id
-                            )."  AND is_featured = 'yes' AND id = ".self::clean($id);
+                            )."  AND is_featured = 'yes' AND id = ".$database->escapeString($id);
                         $database->query($sql);
                     }
                 } else {
@@ -198,7 +198,14 @@ class Photo extends Main_object {
         }
     }
 
-
+//
+//    public function getPropertyPhotos($id){
+//        global $database;
+//        $sql = "SELECT photo FROM photos WHERE id = ".$id;
+//        $result = $database->query($sql);
+//
+//        var_export($result);
+//    }
 
 
 

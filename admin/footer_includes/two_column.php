@@ -7,9 +7,9 @@
 $footer_type = new FooterClass();
 if(isset($_POST['submit2'])){
     $footer_type->type = "two_column";
-    $footer_type->field_1 = $_POST['field_1'];
-    $footer_type->field_2 = $_POST['field_2'];
-    $footer_type->copyright = $_POST['copyright'];
+    $footer_type->field_1 = FooterClass::clean($_POST['field_1']);
+    $footer_type->field_2 = FooterClass::clean($_POST['field_2']);
+    $footer_type->copyright = FooterClass::clean($_POST['copyright']);
 
 
     $footer_type->saveFooterTwoColumn();

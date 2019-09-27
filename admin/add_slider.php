@@ -13,6 +13,9 @@ if(!$session->isSignedIn()){
         redirect('edit_user.php?id='.Users::clean($_SESSION['user_id']['id']));
     }
     $id = Users::clean($_SESSION['user_id']['id']);
+    if($role != 'admin'){
+        redirect('adm_index.php');
+    }
 }
 
 ?>

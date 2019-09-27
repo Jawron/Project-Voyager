@@ -5,6 +5,9 @@ if(!$session->isSignedIn()){
 } else {
     $username = Users::clean($_SESSION['user_id']['username']);
     $role = Users::clean($_SESSION['user_id']['role']);
+    if($role != 'admin'){
+        redirect('adm_index.php');
+    }
 }
 
 if(empty($_GET['id'])){
@@ -16,7 +19,7 @@ $property = Property::findbyId($_GET['id']);
 
 if($property) {
     $property->id = $_GET['id'];
-    $session->message("Photo has been deleted");
+    $session->message("Property has been deleted");
     $property->deleteProperty();
     redirect('properties.php');
 
